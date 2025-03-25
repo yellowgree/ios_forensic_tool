@@ -2,10 +2,10 @@ from tkinter import messagebox
 import os
 
 from backup_analyzer.manifest_utils import load_manifest_plist, load_manifest_db
-from backup_analyzer.build_tree_utils import build_tree, build_backup_tree
+from backup_analyzer.build_tree_utils import *
 from backup_analyzer.backup_decrypt_utils import decrypt_backup
 
-def load_backup(backup_path, password, tree_widget, enable_pw_var, file_list_tree, status_label=None):
+def load_backup(backup_path, password, tree_widget, enable_pw_var, file_list_tree, status_label=None, icon_dict=None):
     """ Loads the backup data and updates the UI components. """
     # 상태 업데이트 함수
     def update_status(message):
@@ -53,7 +53,11 @@ def load_backup(backup_path, password, tree_widget, enable_pw_var, file_list_tre
     file_tree, _ = build_tree(file_info_list)
     
     update_status("백업 트리 구성 중...")
-    path_dict, backup_tree_nodes = build_backup_tree(tree_widget, file_tree)
+    # 아이콘 딕셔너리가 제공된 경우 사용
+    if icon_dict:
+        path_dict, backup_tree_nodes = build_backup_tree(tree_widget, file_tree, icon_dict)
+    else:
+        path_dict, backup_tree_nodes = build_backup_tree(tree_widget, file_tree)
 
     tree_widget.path_dict = path_dict
     tree_widget.backup_tree_nodes = backup_tree_nodes
@@ -73,5 +77,3 @@ def check_backup_directory(backup_path):
         messagebox.showerror("Error", f"Invalid directory: {backup_path}")
         return False
     return True
-
-

@@ -1,10 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
-from gui.components.device_info import *
+from gui.components.display_device_info import *
 from gui.components.display_browser import *
-from gui.components.message import *
-from gui.components.call_history import *
-from gui.components.photo import *
+from gui.components.display_message import *
+from gui.components.display_contacts import *
+from gui.components.display_photos_media import *
+from gui.components.display_call_history import *
+
+from backup_analyzer.build_tree import *
 
 def create_artifact_analysis_options(parent, backup_path_var, colors):
     """아티팩트 분석 옵션을 생성합니다."""
@@ -21,13 +24,16 @@ def create_artifact_analysis_options(parent, backup_path_var, colors):
     # 오른쪽 콘텐츠 영역 생성 (여기서 미리 생성)
     content_frame = ttk.Frame(main_frame, style="Content.TFrame", padding=10)
     content_frame.pack(side="right", fill="both", expand=True)
+
+
     
     # 카테고리 버튼 생성
     categories = [
         {"name": "디바이스 정보", "icon": "📱", "command": lambda: display_device_info(content_frame, backup_path_var.get())},
         {"name": "브라우저", "icon": "🌐", "command": lambda: display_browser(content_frame, backup_path_var.get())},
         {"name": "카카오톡", "icon": "💬", "command": lambda: display_messages(content_frame, backup_path_var.get())},
-        {"name": "연락처", "icon": "📞", "command": lambda: display_call_history(content_frame, backup_path_var.get())},
+        {"name": "연락처", "icon": "📞", "command": lambda: display_contacts(content_frame, backup_path_var.get())},
+        {"name": "통화 기록", "icon": "📞", "command": lambda: display_call_history(content_frame, backup_path_var.get())},  # 새로운 카테고리 추가
         {"name": "사진 및 미디어", "icon": "🖼️", "command": lambda: display_photos_media(content_frame, backup_path_var.get())},
     ]
     

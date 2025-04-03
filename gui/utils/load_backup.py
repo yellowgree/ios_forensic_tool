@@ -2,7 +2,7 @@ from tkinter import messagebox
 import os
 
 from backup_analyzer.manifest_utils import load_manifest_plist, load_manifest_db
-from backup_analyzer.build_tree_utils import *
+from backup_analyzer.build_tree import *
 from backup_analyzer.backup_decrypt_utils import decrypt_backup
 
 def load_backup(backup_path, password, tree_widget, enable_pw_var, file_list_tree, status_label=None, icon_dict=None):

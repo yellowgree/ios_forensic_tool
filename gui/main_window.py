@@ -8,7 +8,7 @@ from gui.styles import apply_styles
 from gui.components.backup_tree import create_backup_tree_frame
 from gui.components.file_list import create_file_list_frame
 from gui.components.artifact_panel import create_artifact_analysis_options
-from gui.components.device_info import *
+from gui.components.display_device_info import *
 from gui.components.toggle import*
 
 from gui.utils.events import (
@@ -60,7 +60,7 @@ def setup_gui(rootWindow, colors):
     main_frame = ttk.Frame(rootWindow)
     main_frame.pack(fill="both", expand=True, padx=10, pady=10)
     
-    # ==== 헤더 섹션 (더 작게 조정) ====
+    # ==== 헤더 섹션 ====
     header_frame = ttk.Frame(main_frame)
     header_frame.pack(fill="x", padx=10, pady=(5, 10))
 
@@ -95,7 +95,7 @@ def setup_gui(rootWindow, colors):
     enable_pw_var = tk.IntVar(value=0)
     password_var = tk.StringVar()
     
-    # ==== 상단 제어 영역 (더 작게 조정) ====
+    # ==== 상단 제어 영역 ====
     control_frame = ttk.Frame(main_frame)
     control_frame.pack(fill="x", padx=10, pady=5)
     control_frame.columnconfigure(0, weight=1)  # 왼쪽 프레임 비율
